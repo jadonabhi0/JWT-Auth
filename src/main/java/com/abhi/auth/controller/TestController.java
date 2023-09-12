@@ -23,7 +23,7 @@ public class TestController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/user")
     public List<User> test(){
         System.out.println("Hello");
         logger.info("Hello form controller");
