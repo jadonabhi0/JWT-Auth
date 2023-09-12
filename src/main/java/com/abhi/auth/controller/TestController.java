@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/home")
 public class TestController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
