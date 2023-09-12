@@ -2,7 +2,10 @@ package com.abhi.auth.service;/*
     @author jadon
 */
 
-import com.abhi.auth.modals.User;
+import com.abhi.auth.entities.User;
+import com.abhi.auth.repositary.UserRepositary;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -11,17 +14,21 @@ import java.util.UUID;
 
 @Service
 public class UserService {
-    List<User> lst = new LinkedList<>();
 
-    UserService(){
-        lst.add(new User(UUID.randomUUID().toString() , "Abhishek Jadon", "Jadonabhi0@Gmail.com"));
-        lst.add(new User(UUID.randomUUID().toString() , "Aman Jadon", "Jadonaman0@Gmail.com"));
-        lst.add(new User(UUID.randomUUID().toString() , "Shikha Jadon", "Jadonshikha0@Gmail.com"));
+    @Autowired
+    private UserRepositary userRepositary;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public List<User> getAllUsers(){
+        return  this.userRepositary.findAll();
     }
 
 
-    public List<User> getAllUser(){
-        return lst;
+    public User createUser(User user){
+        user.setUserId(UUID.randomUUID().toString());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return this.userRepositary.save(user);
     }
-
 }

@@ -2,7 +2,7 @@ package com.abhi.auth.controller;/*
     @author jadon
 */
 
-import com.abhi.auth.modals.User;
+import com.abhi.auth.entities.User;
 import com.abhi.auth.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ public class TestController {
     public List<User> test(){
         System.out.println("Hello");
         logger.info("Hello form controller");
-        return userService.getAllUser();
+        return userService.getAllUsers();
     }
 
 
